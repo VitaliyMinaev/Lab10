@@ -146,6 +146,22 @@ void SignatureProcessorIdentification() {
         << "; Ecx: " << myEcx << "; Edx: " << myEdx << std::endl;
 }
 
+/* Task 7 */
+void GetCacheImage() {
+    unsigned long myEax, myEbx, myEdx;
+    _asm
+    {
+        mov eax, 4
+        cpuid
+        mov myEax, eax
+        mov myEbx, ebx
+        mov myEdx, edx
+    }
+
+    std::cout << "Eax: " << myEax << "; Ebx: " << myEbx 
+        << "; Edx: " << myEdx << std::endl;
+}
+
 int main()
 {
     std::cout << "Task 1: " << std::endl;
@@ -160,6 +176,9 @@ int main()
 
     std::cout << "\n\nTask 5: " << std::endl;
     SignatureProcessorIdentification();
+
+    std::cout << "\nTask 7: " << std::endl;
+    GetCacheImage();
 
     std::cout << "\n" << std::endl;
 
