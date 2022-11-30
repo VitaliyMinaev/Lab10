@@ -31,7 +31,7 @@ void FlagRegisterAnalyse() {
         cputype_8086: 
         mov AX, 1
         mov eax, 2
-        jmp prg_exit
+        
 
         prg_exit:
         mov result, eax
@@ -127,6 +127,25 @@ void InfoAboutManufactor() {
     printf("0x% x", item3);
 }
 
+/* Task 5 */
+void SignatureProcessorIdentification() {
+    unsigned long myEax, myEbx, myEcx, myEdx;
+
+    _asm
+    {
+        mov EAX, 1
+        cpuid
+
+        mov myEax, eax
+        mov myEbx, ebx
+        mov myEcx, ecx
+        mov myEdx, edx
+    }
+
+    std::cout << "Eax: " << myEax << "; Ebx: " << myEbx 
+        << "; Ecx: " << myEcx << "; Edx: " << myEdx << std::endl;
+}
+
 int main()
 {
     std::cout << "Task 1: " << std::endl;
@@ -136,10 +155,11 @@ int main()
     CpuidExistingTest();
     MaxParameterValue();
 
-    std::cout << "\nTask 3: " << std::endl;
-
     std::cout << "\nTask 4: " << std::endl;
     InfoAboutManufactor();
+
+    std::cout << "\n\nTask 5: " << std::endl;
+    SignatureProcessorIdentification();
 
     std::cout << "\n" << std::endl;
 
