@@ -151,7 +151,7 @@ void GetCacheImage() {
     unsigned long myEax, myEbx, myEdx;
     _asm
     {
-        mov eax, 4
+        mov eax, 2
         cpuid
         mov myEax, eax
         mov myEbx, ebx
